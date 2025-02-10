@@ -36,32 +36,18 @@ function App() {
      }, [])
 
      // return <AccordionComponent ArrOfData={transformedData as itemI[]} />;
-     return <div>{selections}</div>
+     return (
+          <>
+               <div className="parent">
+                    <div className="div1"> </div>
+                    <div className="div2"> </div>
+                    <div className="div3"> </div>
+                    <div className="div4"> </div>
+                    <div className="div5"> </div>
+               </div>
+          </>
+     )
 }
 
 export default App;
 
-/*
-
-<div class="parent">
-<div class="div1"> </div>
-<div class="div2"> </div>
-<div class="div3"> </div>
-<div class="div4"> </div>
-<div class="div5"> </div>
-</div>
-
-.parent {
-display: grid;
-grid-template-columns: repeat(5, 1fr);
-grid-template-rows: repeat(5, 1fr);
-grid-column-gap: 16px;
-grid-row-gap: 16px;
-}
-
-.div1 { grid-area: 1 / 1 / 4 / 4; }
-.div2 { grid-area: 1 / 4 / 4 / 6; }
-.div3 { grid-area: 4 / 5 / 6 / 6; }
-.div4 { grid-area: 4 / 3 / 6 / 5; }
-.div5 { grid-area: 4 / 1 / 6 / 3; }
-*/
