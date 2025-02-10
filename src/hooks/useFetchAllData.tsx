@@ -6,7 +6,7 @@ function useFetchAllData() {
      const [fullData, setFullData] = useState<Record<string, string>[] | null>(null);
 
      const fetchData = useCallback(async () => {
-          const api = useApi("EE/client-selection/1"); // change to "/EE"
+          const api = useApi("EE");
           const resp = await api.get();
 
           if (resp) {

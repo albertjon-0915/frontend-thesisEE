@@ -6,11 +6,10 @@ function useFetchDataById(id: string) {
      const [datasById, setDatasById] = useState<Record<string, string>[] | null>(null);
 
      const fetchDataById = useCallback(async (id: string) => {
-          const api = useApi(`EE/client-selection/${id}`); 
+          const api = useApi(`EE/client-selections/${id}`); 
           const resp = await api.get();
 
           if (resp) {
-            console.log(resp.clientData);
                setDatasById(resp.clientData);
                return;
           }
