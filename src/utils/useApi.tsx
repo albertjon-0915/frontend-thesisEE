@@ -1,4 +1,4 @@
-function HttpUrlEndpoints () {
+function ApiService () {
      interface dataI {
           data: string | Record<string, string>[] | { [key: string]: string };
      }
@@ -38,7 +38,6 @@ function HttpUrlEndpoints () {
                               throw new Error(`HTTP error! Status: ${response.status}`);
                          }
 
-                         console.log(response ? response.json(): "")
                          return response.json();
                     } catch (error) {
                          console.error("Error:", error);
@@ -47,7 +46,7 @@ function HttpUrlEndpoints () {
           };
      };
 
-     return useApi;
+     return {useApi};
 }
 
-export default HttpUrlEndpoints ;
+export default ApiService ;

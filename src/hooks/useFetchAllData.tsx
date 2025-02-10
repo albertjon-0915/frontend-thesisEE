@@ -1,30 +1,25 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import ApiService from "../utils/useApi";
 
 function useFetchAllData() {
-     const [data, setData] = useState<string | null | any>(null);
+     const { useApi } = ApiService();
+     const [fullData, setFullData] = useState<Record<string, string>[] | null>(null);
 
-     const something = async () => {
-          const response = await fetch(`${import.meta.env.VITE_API_URL}/EE/client-selection/1`, {
-               method: "GET",
-               headers: {
-                    "Content-Type": "application/json",
-               },
-          });
-          const dataResp = await response.json();
+     const fetchData = useCallback(async () => {
+          const api = useApi("EE/client-selection/1"); // change to "/EE"
+          const resp = await api.get();
 
-          if (dataResp) {
-               setData(data);
-               console.log(data);
+          if (resp) {
+               setFullData(resp.clientData);
+               return;
           }
-          return setData("no data");
-     };
+     }, [fullData]);
 
      useEffect(() => {
-          console.log(import.meta.env.VITE_API_URL);
-          something();
+          fetchData();
      }, []);
 
-     return <div>{data}</div>;
+     return { fullData };
 }
 
 export default useFetchAllData;
