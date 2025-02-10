@@ -11,8 +11,8 @@ body {
     grid-row-gap: 16px;
 }
     
-.div1 { background: whitesmoke;grid-area: 1 / 1 / 4 / 4; }
-.div2 { background: whitesmoke;grid-area: 1 / 4 / 4 / 6; }
-.div3 { background: whitesmoke;grid-area: 4 / 5 / 6 / 6; }
-.div4 { background: whitesmoke;grid-area: 4 / 3 / 6 / 5; }
-.div5 { background: whitesmoke;grid-area: 4 / 1 / 6 / 3; }
+.div1 { min-height: 15em; background: whitesmoke;grid-area: 1 / 1 / 4 / 4; }
+.div2 { min-height: 15em; background: whitesmoke;grid-area: 1 / 4 / 4 / 6; }
+.div3 { min-height: 15em; background: whitesmoke;grid-area: 4 / 5 / 6 / 6; }
+.div4 { min-height: 15em; background: whitesmoke;grid-area: 4 / 3 / 6 / 5; }
+.div5 { min-height: 15em; background: whitesmoke;grid-area: 4 / 1 / 6 / 3; }

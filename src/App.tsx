@@ -39,11 +39,11 @@ function App() {
      return (
           <>
                <div className="parent">
-                    <div className="div1"> </div>
-                    <div className="div2"> </div>
-                    <div className="div3"> </div>
-                    <div className="div4"> </div>
-                    <div className="div5"> </div>
+                    <div className="div1"> graph</div>
+                    <div className="div2"> list all</div>
+                    <div className="div3"> current </div>
+                    <div className="div4">list by id </div>
+                    <div className="div5">bar graph </div>
                </div>
           </>
      )
