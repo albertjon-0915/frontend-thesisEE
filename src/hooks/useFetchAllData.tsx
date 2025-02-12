@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import ApiService from "../utils/useApi";
+import ApiService from "./useApi";
 
 function useFetchAllData() {
      const { useApi } = ApiService();

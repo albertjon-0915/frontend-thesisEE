@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import Accordion from "react-bootstrap/Accordion";
 
 export interface itemI {
@@ -28,10 +27,10 @@ function AccordionComponent({ArrOfData, styling}: { ArrOfData: FullDataI[] | ite
                                    </Accordion.Header>
                                    <Accordion.Body>
                                         <div className="text-secondary">
-                                             Voltage: <span className="text-black fw-medium">{item.voltage}</span>
+                                             Voltage: <span className="fw-medium" style={{ color: '#A96424'}}>{item.voltage}</span>
                                         </div>
                                         <div className="text-secondary">
-                                             Current: <span className="text-black fw-medium">{item.current}</span>
+                                             Current: <span className="fw-medium" style={{ color: '#A96424'}}>{item.current}</span>
                                         </div>
                                    </Accordion.Body>
                               </Accordion.Item>
