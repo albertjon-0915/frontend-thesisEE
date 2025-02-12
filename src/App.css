@@ -11,9 +11,9 @@ body {
     grid-row-gap: 16px;
 }
     
-.div1 { min-height: 15em; max-height: 23em; background: whitesmoke;grid-area: 1 / 1 / 4 / 4; }
+.div1 { min-height: 15em; max-height: 23em; background: rgba(245, 245, 245, 0.421);grid-area: 1 / 1 / 4 / 4; }
 .div2 { min-height: 15em; max-height: 23em; background: whitesmoke;grid-area: 1 / 4 / 4 / 6; }
-.div3 { min-height: 15em; max-height: 20em; background: whitesmoke;grid-area: 4 / 3 / 6 / 6; }
+.div3 { min-height: 15em; max-height: 20em; grid-area: 4 / 3 / 6 / 6; }
 .div4 { min-height: 15em; max-height: 20em; grid-area: 4 / 1 / 6 / 3; }
 
 
