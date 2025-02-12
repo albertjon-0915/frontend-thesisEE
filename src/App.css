@@ -6,15 +6,15 @@ body {
     padding: 5em;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
+    grid-auto-rows: auto;
     grid-column-gap: 16px;
     grid-row-gap: 16px;
 }
     
 .div1 { min-height: 15em; max-height: 23em; background: whitesmoke;grid-area: 1 / 1 / 4 / 4; }
 .div2 { min-height: 15em; max-height: 23em; background: whitesmoke;grid-area: 1 / 4 / 4 / 6; }
-.div3 { min-height: 15em; max-height: 23em; background: whitesmoke;grid-area: 4 / 3 / 6 / 6; }
-.div4 { min-height: 15em; max-height: 23em; grid-area: 4 / 1 / 6 / 3; }
+.div3 { min-height: 15em; max-height: 20em; background: whitesmoke;grid-area: 4 / 3 / 6 / 6; }
+.div4 { min-height: 15em; max-height: 20em; grid-area: 4 / 1 / 6 / 3; }
 
 
 .div2::-webkit-scrollbar{
@@ -25,6 +25,18 @@ body {
         margin-bottom: 30px;
 }
 .div2::-webkit-scrollbar-thumb{
+    background: #a0a0a0;
+    border-radius: 10px;
+}
+
+.div4::-webkit-scrollbar{
+    width: 5px;
+}
+.div4::-webkit-scrollbar-track {
+        margin-top:30px;
+        margin-bottom: 30px;
+}
+.div4::-webkit-scrollbar-thumb{
     background: #a0a0a0;
     border-radius: 10px;
 }
