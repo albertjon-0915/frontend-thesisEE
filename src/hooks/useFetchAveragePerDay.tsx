@@ -1,12 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import ApiService from "./useApi";
-
-export interface PerDayAvgI {
-     date: string
-     avgVoltage: number
-     avgCurrent: number,
-     clients?: string[]
-}
+import { PerDayAvgI } from "../interface";
 
 function useFetchAveragePerDay() {
      const { useApi } = ApiService();

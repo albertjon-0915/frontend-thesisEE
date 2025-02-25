@@ -1,4 +1,4 @@
-import { FullDataI } from "../components/Accordion";
+import { FullDataI } from "../interface/index";
 
 export const flattenData = (dataCollection: any[]): FullDataI[] => {
           if (dataCollection === null || dataCollection.length === 0) return [];

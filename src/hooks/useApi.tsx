@@ -1,9 +1,8 @@
-function ApiService () {
-     interface dataI {
-          data: string | Record<string, string>[] | { [key: string]: string };
-     }
+import { DataI } from "../interface/index.ts";
 
-     const payloadOptionsObj = (method: string, data?: dataI) => {
+function ApiService () {
+
+     const payloadOptionsObj = (method: string, data?: DataI) => {
           return {
                method: method,
                headers: {
@@ -15,7 +14,7 @@ function ApiService () {
 
      const useApi = (endpoint?: string) => {
           return {
-               post: async (data: dataI) => {
+               post: async (data: DataI) => {
                     try {
                          const response = await fetch(`${import.meta.env.VITE_API_URL}/${endpoint ?? ""}`, {
                              ...payloadOptionsObj("POST", data),

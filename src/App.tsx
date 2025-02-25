@@ -1,16 +1,29 @@
 import "./App.css";
-import { useEffect, useState } from "react";
-import AccordionComponent, { FullDataI } from "./components/Accordion";
-import MyCard, { CardsI } from "./components/Card";
-import useFetchAllData from "./hooks/useFetchAllData";
-import { flattenData } from "./utils";
-import useFetchCurrentData from "./hooks/useFetchCurrentData";
-import useFetchDataAvg from "./hooks/useFetchDataClientAvg";
-import useFetchAveragePerDay from "./hooks/useFetchAveragePerDay";
+import { useEffect, useState, useContext } from "react";
+import { io } from "socket.io-client";
+
+import { ReloadContext } from "./ReloadContext";
+import { Button } from "react-bootstrap";
+
+import AccordionComponent from "./components/Accordion";
+import MyCard from "./components/Card";
 import Linegraph from "./components/Linegraph";
 import Bargraph from "./components/Bargraph";
 
-// TODO: refactor for better data fetching
+import useFetchAllData from "./hooks/useFetchAllData";
+import useFetchCurrentData from "./hooks/useFetchCurrentData";
+import useFetchDataAvg from "./hooks/useFetchDataClientAvg";
+import useFetchAveragePerDay from "./hooks/useFetchAveragePerDay";
+
+import { flattenData } from "./utils";
+import { RealTimeDataI, FullDataI } from "./interface";
+
+import { IoMdRefresh } from "react-icons/io";
+
+const socket = io(import.meta.env.VITE_API_URL);
+socket.on('connect', () => {
+     console.log('Now connected to id: ', socket.id);
+});
 
 function App() {
      const { fullData } = useFetchAllData();
@@ -19,8 +32,18 @@ function App() {
      const { dataAvgPerDay } = useFetchAveragePerDay()
 
      const [flattenDataArr, setFlattenDataArr] = useState<FullDataI[]>([])
+     const [realTimeData, setRealTimeData] = useState<RealTimeDataI[]>([])
+     const { reload } = useContext(ReloadContext);
+
+     socket.on('raspData', (message) => {
+          console.log('Received data: ', message);
+          if(!!message){
+               setRealTimeData([... message]);
+          }
+     })
 
      useEffect(() => {
+          realTimeData.map(item => console.log(item))
           if (flattenDataArr.length === 0) {
             const flattenedData = flattenData(fullData as any[]);
             setFlattenDataArr(flattenedData);
@@ -29,7 +52,20 @@ function App() {
 
      return (
           <>
-               <div className="parent">
+          <div className="parent">
+               <div className="header rounded">
+                    Energy Monitoring System
+               </div>
+              <div className="d-flex justify-content-end py-5">
+                <Button className="px-5" variant="outline-success" onClick={reload}>
+                   <span className="d-flex justify-between gap-lg-2">
+                     <IoMdRefresh style={{ marginTop: '5px' }}/>
+                    refresh
+                   </span>
+               </Button>
+              </div>
+
+               <div className="bento">
                     <div className="div1 p-2 border rounded" >
                          <div className="px-1 p-1 text-black fs-5">
                               Average per day
@@ -52,7 +88,7 @@ function App() {
                               <div className="text-center mt-5">Loading ....</div>
                          }
                     </div>
-                    <div className="div3 p-2 border-1  rounded border-top border-end">
+                    <div className="div3 p-2 rounded border">
                          <div className="px-1 p-1 text-black fs-5">
                               Bar Graph
                          </div>
@@ -68,14 +104,16 @@ function App() {
                               Current clients data
                          </div>
                          {
+                         // TODO: use realtime data ----> realTimeData variable coming from raspberry pi
                          (currentData && currentData.length > 0) ? 
                               <div className="d-flex flex-wrap">
-                                   {currentData.map((item: CardsI) => (
-                                        <MyCard props={{
+                                   {currentData.map((item: RealTimeDataI, index) => (
+                                        <MyCard key={`${item}${index}`} props={{
                                              voltage: item.voltage,
                                              current: item.current,
                                              espClientId: item.espClientId
-                                        }} />
+                                        }}
+                                        hasWarning={!!item.hasWarning ? item.hasWarning : false} />
                                    ))}
                               </div>
                               : 
@@ -83,6 +121,8 @@ function App() {
                          }
                     </div>
                </div>
+          </div>
+
           </>
      )
 }
