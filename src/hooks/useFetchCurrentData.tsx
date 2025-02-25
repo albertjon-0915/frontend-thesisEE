@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import ApiService from "./useApi";
-import { CardsI } from "../components/Card";
+import { CardsI } from "../interface";
 
 
 function useFetchCurrentData() {

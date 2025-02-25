@@ -1,16 +1,7 @@
 import Accordion from "react-bootstrap/Accordion";
+import { FullDataI, ItemI } from "../interface/index";
 
-export interface itemI {
-     voltage: number;
-     current: number;
-     timeStamp: string;
-}
-
-export interface FullDataI extends itemI {
-     sensorClientId?: string
-}
-
-function AccordionComponent({ArrOfData, styling}: { ArrOfData: FullDataI[] | itemI[] , styling?: React.CSSProperties }) {
+function AccordionComponent({ArrOfData, styling}: { ArrOfData: FullDataI[] | ItemI[] , styling?: React.CSSProperties }) {
      return (
           <Accordion>
                {ArrOfData &&

@@ -1,11 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import ApiService from "./useApi";
-
-export interface DataAvgI {
-     espClient: string
-     voltage: number
-     current: number
-}
+import { DataAvgI } from "../interface";
 
 function useFetchDataAvg() {
      const { useApi } = ApiService();

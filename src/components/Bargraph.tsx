@@ -19,7 +19,7 @@ ChartJS.register(
   Legend
 );
 import { Bar } from "react-chartjs-2";
-import { DataAvgI } from "../hooks/useFetchDataClientAvg";
+import { DataAvgI } from "../interface/index";
 
 function Bargraph({ dataArr }: { dataArr: DataAvgI[] }) {
   return (
