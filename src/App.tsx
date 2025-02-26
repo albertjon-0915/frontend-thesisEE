@@ -2,7 +2,7 @@ import "./App.css";
 import { useEffect, useState, useContext } from "react";
 import { io } from "socket.io-client";
 
-import { ReloadContext } from "./ReloadContext";
+import { ReloadContext } from "./ContextProvider";
 import { Button } from "react-bootstrap";
 
 import AccordionComponent from "./components/Accordion";

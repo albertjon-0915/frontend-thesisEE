@@ -38,3 +38,7 @@ export interface DataAvgI {
      voltage: number
      current: number
 }
+
+export interface NameI {
+     [key: string]: string
+}
