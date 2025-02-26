@@ -35,15 +35,14 @@ function App() {
      const [realTimeData, setRealTimeData] = useState<RealTimeDataI[]>([])
      const { reload } = useContext(ReloadContext);
 
-     socket.on('raspData', (message) => {
+     socket.on('raspData', (message: any) => {
           console.log('Received data: ', message);
           if(!!message){
-               setRealTimeData([... message]);
+               setRealTimeData(message);
           }
      })
 
      useEffect(() => {
-          realTimeData.map(item => console.log(item))
           if (flattenDataArr.length === 0) {
             const flattenedData = flattenData(fullData as any[]);
             setFlattenDataArr(flattenedData);
@@ -105,15 +104,16 @@ function App() {
                          </div>
                          {
                          // TODO: use realtime data ----> realTimeData variable coming from raspberry pi
-                         (currentData && currentData.length > 0) ? 
+                         (realTimeData && realTimeData.length > 0) ? 
                               <div className="d-flex flex-wrap">
-                                   {currentData.map((item: RealTimeDataI, index) => (
+                                   {realTimeData.map((item: RealTimeDataI, index) => (
                                         <MyCard key={`${item}${index}`} props={{
                                              voltage: item.voltage,
                                              current: item.current,
-                                             espClientId: item.espClientId
+                                             espClientId: item.espClientId,
+                                             hasWarning: item.hasWarning 
                                         }}
-                                        hasWarning={!!item.hasWarning ? item.hasWarning : false} />
+                                         />
                                    ))}
                               </div>
                               : 
