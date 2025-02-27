@@ -1,12 +1,12 @@
-import { useCallback, useEffect, useState } from "react";
-import ApiService from "./useApi";
-import { NameI } from "../interface";
+// import { useState } from "react";
+// import ApiService from "./useApi";
+// import { NameI } from "../interface";
 
 
 function useFetchCurrentData() {
-     const { useApi } = ApiService();
-     const [nameRef, setNameRef] = useState<Record<string, any> | null>({});
-     const [editNameRef, setEditNameRef] = useState<NameI>({})
+     // const { useApi } = ApiService();
+     // const [nameRef, setNameRef] = useState<Record<string, any> | null>({});
+     // const [editNameRef, setEditNameRef] = useState<NameI>({})
      // const fetchDataRef = useCallback(async () => {
      //      const api = useApi(`name/`);
      //      const resp = await api.get();
