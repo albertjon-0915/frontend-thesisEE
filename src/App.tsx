@@ -2,7 +2,7 @@ import "./App.css";
 import { useEffect, useState, useContext } from "react";
 import { io } from "socket.io-client";
 
-import { ReloadContext } from "./ContextProvider";
+import { Context } from "./ContextProvider";
 import { Button } from "react-bootstrap";
 
 import AccordionComponent from "./components/Accordion";
@@ -27,13 +27,13 @@ socket.on('connect', () => {
 
 function App() {
      const { fullData } = useFetchAllData();
-     const { currentData } = useFetchCurrentData();
+     // const { currentData } = useFetchCurrentData();
      const { dataAvgById } = useFetchDataAvg()
      const { dataAvgPerDay } = useFetchAveragePerDay()
 
      const [flattenDataArr, setFlattenDataArr] = useState<FullDataI[]>([])
      const [realTimeData, setRealTimeData] = useState<RealTimeDataI[]>([])
-     const { reload } = useContext(ReloadContext);
+     const { reload } = useContext(Context);
 
      socket.on('raspData', (message: any) => {
           console.log('Received data: ', message);
