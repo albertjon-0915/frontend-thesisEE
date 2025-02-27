@@ -11,7 +11,7 @@ import Linegraph from "./components/Linegraph";
 import Bargraph from "./components/Bargraph";
 
 import useFetchAllData from "./hooks/useFetchAllData";
-import useFetchCurrentData from "./hooks/useFetchCurrentData";
+// import useFetchCurrentData from "./hooks/useFetchCurrentData";
 import useFetchDataAvg from "./hooks/useFetchDataClientAvg";
 import useFetchAveragePerDay from "./hooks/useFetchAveragePerDay";
 
