@@ -20,8 +20,6 @@ import { RealTimeDataI, FullDataI } from "./interface";
 
 import { IoMdRefresh } from "react-icons/io";
 
-import BSU from './assets/BSU.jpg'
-
 const socket = io(import.meta.env.VITE_API_URL);
 socket.on('connect', () => {
      console.log('Now connected to id: ', socket.id);
