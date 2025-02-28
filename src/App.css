@@ -8,14 +8,42 @@ body {
     padding: 5em;
 }
 
+.background {
+    top: 0;
+    right: 0;
+    margin-top: -1em;
+    width: 100%;
+    height: 10em;
+    background-image: linear-gradient(to right, white, transparent), url('../src/assets/BSU.jpg');
+    opacity: 0.6;
+    background-size: 100% 100%, cover;
+    position: absolute;
+    background-position: center;
+}
+
+.logo {
+    top: 0;
+    right: 0;
+    margin-top: .5em;
+    margin-right: 1em;
+    width: 3.5em;
+    height: 3.5em;
+    background-image: url('../src/assets/logo.png');
+    background-size: 100% 100%, cover;
+    position: absolute;
+    z-index: 2;
+}
+
 .header{
-    background: radial-gradient(farthest-corner at 92% 89%, #ff0000ff 0%, #350de7ff 100%), linear-gradient(to right in xyz-d65, #ffbf00ff 0%, #0066ffff 100%), 60% 44% / 150rem 100rem repeat repeating-conic-gradient(from 0deg at 30% 5%, #c5b2a6ff 0%, #daffd1ff 100%);background-blend-mode: soft-light;
+    position: relative;
+    overflow: hidden;
+    /* background: radial-gradient(farthest-corner at 92% 89%, #ff0000ff 0%, #350de7ff 100%), linear-gradient(to right in xyz-d65, #ffbf00ff 0%, #0066ffff 100%), 60% 44% / 150rem 100rem repeat repeating-conic-gradient(from 0deg at 30% 5%, #c5b2a6ff 0%, #daffd1ff 100%);background-blend-mode: soft-light; */
     color: #2e2e2eda;
     font-family: "Ubuntu", serif;
     font-weight: 700;
     font-style: normal;
     font-size: 3.5em;
-    padding: 30px;
+    padding: 1.5em;
 }
 
 .bento {
@@ -24,6 +52,10 @@ body {
     grid-auto-rows: auto;
     grid-column-gap: 16px;
     grid-row-gap: 16px;
+}
+
+.div1, .div3, .div4 {
+    background-color: white;
 }
     
 .div1 { min-height: 15em; max-height: 23em; grid-area: 1 / 1 / 4 / 4; }
@@ -55,3 +87,4 @@ body {
     background: #a0a0a0;
     border-radius: 10px;
 }
+

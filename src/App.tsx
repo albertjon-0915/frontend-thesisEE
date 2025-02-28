@@ -20,6 +20,8 @@ import { RealTimeDataI, FullDataI } from "./interface";
 
 import { IoMdRefresh } from "react-icons/io";
 
+import BSU from './assets/BSU.jpg'
+
 const socket = io(import.meta.env.VITE_API_URL);
 socket.on('connect', () => {
      console.log('Now connected to id: ', socket.id);
@@ -52,8 +54,10 @@ function App() {
      return (
           <>
           <div className="parent">
-               <div className="header rounded">
-                    Energy Monitoring System
+               <div className="header rounded border">
+                    <div className="background"></div>
+                    <div style={{ position: 'relative', zIndex: '1' }}>Energy Monitoring System</div>
+                    <div className="logo d-none d-xl-block"></div>
                </div>
               <div className="d-flex justify-content-end py-5">
                 <Button className="px-5" variant="outline-success" onClick={reload}>
