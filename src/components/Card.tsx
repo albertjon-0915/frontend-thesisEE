@@ -3,6 +3,7 @@ import useFetchAllias from '../hooks/useFetchAllias.tsx';
 import RadioGreen from '../assets/radioGreen.png'
 import RadioOrange from '../assets/radioOrange.png'
 import { RealTimeDataI } from "../interface/index.ts";
+import { computeKiloWattsPerHour } from '../utils';
 
 
 function MyCard({ props }:{props: RealTimeDataI}) {
@@ -20,6 +21,9 @@ function MyCard({ props }:{props: RealTimeDataI}) {
           </span>
           <span>
           current: {props.current.toFixed(4)}
+          </span>
+          <span>
+          kWh: {computeKiloWattsPerHour(props.voltage, props.current, 1).toFixed(4)}
           </span>
         </Card.Text>
       </Card.Body>

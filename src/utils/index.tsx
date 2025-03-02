@@ -28,3 +28,11 @@ export const formatTimeStamptoTime = (timeStampString: string) => {
   const date = new Date(timeStampString);
   return date.toLocaleTimeString('en-US', {  hour: 'numeric', minute: 'numeric' });
 }
+
+export const computeKiloWattsPerHour = (voltage: number, current: number, hours: number) => {
+  // watt = voltage x current
+  // kWh = ( watt x hours ) / 1000
+  const watt = voltage * current;
+  const kwh = watt * hours / 1000;
+  return kwh; 
+}

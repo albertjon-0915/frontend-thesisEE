@@ -1,7 +1,7 @@
 import useFetchAllias from "../hooks/useFetchAllias";
 import Accordion from "react-bootstrap/Accordion";
 import { FullDataI, ItemI } from "../interface/index";
-import { formatTimeStampToDate, formatTimeStampToDay, formatTimeStamptoTime } from "../utils";
+import { computeKiloWattsPerHour, formatTimeStampToDate, formatTimeStampToDay, formatTimeStamptoTime } from "../utils";
 
 function AccordionComponent({ArrOfData, styling}: { ArrOfData: FullDataI[] | ItemI[] , styling?: React.CSSProperties }) {
      const { nameRef } = useFetchAllias();
@@ -15,23 +15,32 @@ function AccordionComponent({ArrOfData, styling}: { ArrOfData: FullDataI[] | Ite
                                    <Accordion.Header>
                                         <div className="d-flex flex-column">
                                              <div className="mb-1">{formatTimeStampToDate(item.timeStamp)}</div>
-                                             <div className="text-secondary fw-light" style={{ fontSize: "12px" }}>
+                                             <div className="text-secondary fw-light" style={{ fontSize: "11px" }}>
                                                   {nameRef?.[item.sensorClientId as string] ?? `esp32 Client ${item.sensorClientId}`}
                                              </div>
-                                             <div className="text-secondary fw-light" style={{ fontSize: "12px" }}>
+                                             <div className="text-secondary fw-light" style={{ fontSize: "11px" }}>
                                                   {formatTimeStampToDay(item.timeStamp)}
                                              </div>
-                                             <div className="text-secondary fw-light" style={{ fontSize: "12px" }}>
+                                             <div className="text-secondary fw-light" style={{ fontSize: "11px" }}>
                                                   {formatTimeStamptoTime(item.timeStamp)}
                                              </div>
+                                             
                                         </div>
                                    </Accordion.Header>
-                                   <Accordion.Body>
-                                        <div className="text-secondary">
-                                             Voltage: <span className="fw-medium" style={{ color: '#A96424'}}>{item.voltage.toFixed(4)}</span>
+                                   <Accordion.Body style={{ fontSize: "13px" }}>
+                                        <div className="d-flex justify-content-between text-secondary mb-1" style={{ maxWidth: '10em'}}>
+                                             <span>Voltage: </span>
+                                             <span className="fw-medium" style={{ minWidth: '5em', color: '#A96424'}}>{item.voltage.toFixed(4)}</span>
                                         </div>
-                                        <div className="text-secondary">
-                                             Current: <span className="fw-medium" style={{ color: '#A96424'}}>{item.current.toFixed(4)}</span>
+                                        <div className="d-flex justify-content-between text-secondary mb-1" style={{ maxWidth: '10em'}}>
+                                             <span>Current: </span>
+                                             <span className="fw-medium" style={{ minWidth: '5em', color: '#A96424'}}>{item.current.toFixed(4)}</span>
+                                        </div>
+                                        <div className="d-flex justify-content-between text-secondary mb-1" style={{ maxWidth: '10em'}}>
+                                             <span>kWh: </span> 
+                                             <span className="fw-medium" style={{ minWidth: '5em', color: '#A96424'}}>
+                                                  {computeKiloWattsPerHour(item.voltage, item.current, 1).toFixed(4)}
+                                             </span>
                                         </div>
                                    </Accordion.Body>
                               </Accordion.Item>
