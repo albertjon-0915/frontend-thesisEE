@@ -105,7 +105,6 @@ function App() {
                               Current clients data
                          </div>
                          {
-                         // TODO: use realtime data ----> realTimeData variable coming from raspberry pi
                          (realTimeData && realTimeData.length > 0) ? 
                               <div className="d-flex flex-wrap">
                                    {realTimeData.map((item: RealTimeDataI, index) => (

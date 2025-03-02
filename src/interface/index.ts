@@ -19,11 +19,11 @@ export interface ItemI {
 }
 
 export interface FullDataI extends ItemI {
-     sensorClientId?: string
+     sensorClientId?: string 
 }
 
 export interface DataI {
-    data: string | Record<string, string>[] | { [key: string]: string };
+    [key: string]: string | Record<string, string>[] | { [key: string]: string };
 }
 
 export interface PerDayAvgI {

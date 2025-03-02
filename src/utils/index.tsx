@@ -13,3 +13,18 @@ export const flattenData = (dataCollection: any[]): FullDataI[] => {
       }));
     });
 };
+
+export const formatTimeStampToDate = (timeStampString: string) => {
+  const date = new Date(timeStampString);
+  return date.toLocaleDateString('en-US', {  month: 'long', day: 'numeric', year: 'numeric' });
+}
+
+export const formatTimeStampToDay = (timeStampString: string) => {
+  const date = new Date(timeStampString);
+  return date.toLocaleDateString('en-US', { weekday: 'long' });
+}
+
+export const formatTimeStamptoTime = (timeStampString: string) => {
+  const date = new Date(timeStampString);
+  return date.toLocaleTimeString('en-US', {  hour: 'numeric', minute: 'numeric' });
+}

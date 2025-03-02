@@ -24,10 +24,10 @@ body {
 .logo {
     top: 0;
     right: 0;
-    margin-top: .5em;
+    margin-top: .18em;
     margin-right: 1em;
     width: 3.5em;
-    height: 3.5em;
+    aspect-ratio: .8/1;
     background-image: url('../src/assets/logo.png');
     background-size: 100% 100%, cover;
     position: absolute;
