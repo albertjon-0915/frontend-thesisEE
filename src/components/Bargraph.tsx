@@ -20,12 +20,15 @@ ChartJS.register(
 );
 import { Bar } from "react-chartjs-2";
 import { DataAvgI } from "../interface/index";
+import useFetchAllias from '../hooks/useFetchAllias.tsx';
 
 function Bargraph({ dataArr }: { dataArr: DataAvgI[] }) {
+  const { nameRef } = useFetchAllias();
+
   return (
     <Bar
       data={{
-        labels: dataArr?.map((item) => item.espClient),
+        labels: dataArr?.map((item) => nameRef?.[item.espClient] ?? item.espClient),
         datasets: [
           {
             label: "voltage",
