@@ -88,3 +88,6 @@ body {
     border-radius: 10px;
 }
 
+.form-control::placeholder{
+    color: rgba(52, 52, 52, 0.408) !important;
+}

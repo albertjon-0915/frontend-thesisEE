@@ -13,9 +13,11 @@ function MyCard({ props }:{props: RealTimeDataI}) {
       <Card.Body>
         <Card.Subtitle className="mb-2 text-muted" style={{ fontSize: '0.8em'}}>
           <img src={props.hasWarning ? RadioOrange : RadioGreen } alt="radio" width={'15px'}/> 
-          {nameRef?.[props.espClientId] ?? `esp32 Client ${props.espClientId}`}
+          <span className='ps-1'>
+            {nameRef?.[props.espClientId] ?? `esp32 Client ${props.espClientId}`}
+          </span>
         </Card.Subtitle>
-        <Card.Text className='fw-light d-flex flex-column' style={{ fontSize: '0.7em'}}>
+        <Card.Text className='fw-light d-flex flex-column ms-3 ps-1' style={{ fontSize: '0.7em'}}>
           <span>
           Voltage: {props.voltage.toFixed(4)}
           </span>

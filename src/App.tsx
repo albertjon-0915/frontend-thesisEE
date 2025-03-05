@@ -5,13 +5,16 @@ import { io } from "socket.io-client";
 import { Context } from "./ContextProvider";
 import { Button } from "react-bootstrap";
 
+import Edit from "./assets/edit.png"
+import Close from "./assets/close.png"
+
 import AccordionComponent from "./components/Accordion";
+import EditAllias from "./components/EditAllias";
 import MyCard from "./components/Card";
 import Linegraph from "./components/Linegraph";
 import Bargraph from "./components/Bargraph";
 
 import useFetchAllData from "./hooks/useFetchAllData";
-// import useFetchCurrentData from "./hooks/useFetchCurrentData";
 import useFetchDataAvg from "./hooks/useFetchDataClientAvg";
 import useFetchAveragePerDay from "./hooks/useFetchAveragePerDay";
 
@@ -27,20 +30,23 @@ socket.on('connect', () => {
 
 function App() {
      const { fullData } = useFetchAllData();
-     // const { currentData } = useFetchCurrentData();
      const { dataAvgById } = useFetchDataAvg()
      const { dataAvgPerDay } = useFetchAveragePerDay()
 
      const [flattenDataArr, setFlattenDataArr] = useState<FullDataI[]>([])
      const [realTimeData, setRealTimeData] = useState<RealTimeDataI[]>([])
-     const { reload } = useContext(Context);
+     const { reload, setShowEdit, showEdit } = useContext(Context);
 
-     socket.on('raspData', (message: any) => {
-          console.log('Received data: ', message);
+     // const [showEdit, setShowEdit] = useState(false);
+
+     socket.on('raspData', async (message: any) => {
           if(!!message){
+               await setRealTimeData([]) // reset data before assigning new value
                setRealTimeData(message);
           }
      })
+
+     const showIsEditView = () => setShowEdit(!showEdit)
 
      useEffect(() => {
           if (flattenDataArr.length === 0) {
@@ -48,6 +54,27 @@ function App() {
             setFlattenDataArr(flattenedData);
           }
      }, [flattenDataArr.length, fullData]); 
+
+     const renderCurrentDataOrEdit = () => {
+          if (showEdit) {
+               return <EditAllias />
+          } else {
+               return (realTimeData && realTimeData.length > 0) ? 
+               <div className="d-flex flex-wrap">
+                    {realTimeData.map((item: RealTimeDataI, index) => (
+                         <MyCard key={`${item}${index}`} props={{
+                              voltage: item.voltage,
+                              current: item.current,
+                              espClientId: item.espClientId,
+                              hasWarning: item.hasWarning 
+                         }}
+                          />
+                    ))}
+               </div>
+               : 
+               <div className="text-center mt-5">Loading ....</div>
+          }
+     }
 
      return (
           <>
@@ -100,26 +127,18 @@ function App() {
                               <div className="text-center mt-5">Loading ....</div>
                          }
                     </div>
-                    <div className="div4 border rounded p-4 overflow-x-auto overflow-y-scroll">
-                         <div className="px-1 p-1 py-2 text-black fs-5">
-                              Current clients data
+                    <div className="position-relative div4 border rounded p-4 overflow-x-auto overflow-y-scroll">
+                         <div className="d-flex justify-content-between px-1 p-1 py-2 text-black fs-5">
+                              <span>Current clients data</span>
+                              <button 
+                                   onClick={showIsEditView} 
+                                   className="border-0 bg-transparent" 
+                                   style={{ marginTop: '-5px'}}
+                              >
+                                   <img src={showEdit ? Close : Edit} alt="edit" width={'25px'}/>
+                              </button>
                          </div>
-                         {
-                         (realTimeData && realTimeData.length > 0) ? 
-                              <div className="d-flex flex-wrap">
-                                   {realTimeData.map((item: RealTimeDataI, index) => (
-                                        <MyCard key={`${item}${index}`} props={{
-                                             voltage: item.voltage,
-                                             current: item.current,
-                                             espClientId: item.espClientId,
-                                             hasWarning: item.hasWarning 
-                                        }}
-                                         />
-                                   ))}
-                              </div>
-                              : 
-                              <div className="text-center mt-5">Loading ....</div>
-                         }
+                         { renderCurrentDataOrEdit() }
                     </div>
                </div>
           </div>
