@@ -37,8 +37,6 @@ function App() {
      const [realTimeData, setRealTimeData] = useState<RealTimeDataI[]>([])
      const { reload, setShowEdit, showEdit } = useContext(Context);
 
-     // const [showEdit, setShowEdit] = useState(false);
-
      socket.on('raspData', async (message: any) => {
           if(!!message){
                await setRealTimeData([]) // reset data before assigning new value

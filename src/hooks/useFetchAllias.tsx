@@ -6,6 +6,7 @@ import { NameI } from "../interface";
 function useFetchAllias() {
      const { useApi } = ApiService();
      const [nameRef, setNameRef] = useState<Record<string, string> | null>({});
+     const [nameSelections, setNameSelections] = useState<string[] | null>([]);
 
      const fetchDataRef = useCallback(async () => {
           const api = useApi(`name/`);
@@ -30,11 +31,22 @@ function useFetchAllias() {
           }
      }
 
+     const fetchNameSelections = useCallback(async () => {
+          const api = useApi(`name/selection`);
+          const resp = await api.get();
+
+          if (resp) {
+               setNameSelections(resp.data);
+               return;
+          }
+     }, [nameSelections])
+
      useEffect(() => {
           fetchDataRef();
+          fetchNameSelections();
      }, []);
 
-     return { nameRef, saveAllias};
+     return { nameRef, saveAllias, nameSelections };
 }
 
 export default useFetchAllias;
