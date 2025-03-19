@@ -23,7 +23,12 @@ import { RealTimeDataI, FullDataI } from "./interface";
 
 import { IoMdRefresh } from "react-icons/io";
 
-const socket = io(import.meta.env.VITE_API_URL);
+const socket = io(import.meta.env.VITE_API_URL, { 
+     transports: ['websocket'],  
+     pingInterval: 10000, 
+     pingTimeout: 5000, 
+} as any);
+
 socket.on('connect', () => {
      console.log('Now connected to id: ', socket.id);
 });
@@ -37,9 +42,9 @@ function App() {
      const [realTimeData, setRealTimeData] = useState<RealTimeDataI[]>([])
      const { reload, setShowEdit, showEdit } = useContext(Context);
 
-     socket.on('raspData', async (message: any) => {
+     socket.on('raspData', (message: any) => {
+          // console.log(message)
           if(!!message){
-               await setRealTimeData([]) // reset data before assigning new value
                setRealTimeData(message);
           }
      })
@@ -66,7 +71,7 @@ function App() {
                               espClientId: item.espClientId,
                               hasWarning: item.hasWarning 
                          }}
-                          />
+                         />
                     ))}
                </div>
                : 
