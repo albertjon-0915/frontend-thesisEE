@@ -184,7 +184,7 @@ function App() {
                     </InputGroup>
                     <p>Selected Time: {selectedTime} mins</p>
                     <Button className="mt-5" variant="danger" onClick={async () => await resetSchedule()}>
-                         Reset Timer
+                         Reset Schedule
                     </Button>
                </div>
           
