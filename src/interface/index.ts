@@ -23,7 +23,7 @@ export interface FullDataI extends ItemI {
 }
 
 export interface DataI {
-    [key: string]: string | Record<string, string>[] | { [key: string]: string };
+    [key: string]: string | number | Record<string, string>[] | { [key: string]: string | number };
 }
 
 export interface PerDayAvgI {

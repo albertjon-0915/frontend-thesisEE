@@ -34,7 +34,7 @@ body {
     z-index: 2;
 }
 
-.header{
+.header {
     position: relative;
     overflow: hidden;
     /* background: radial-gradient(farthest-corner at 92% 89%, #ff0000ff 0%, #350de7ff 100%), linear-gradient(to right in xyz-d65, #ffbf00ff 0%, #0066ffff 100%), 60% 44% / 150rem 100rem repeat repeating-conic-gradient(from 0deg at 30% 5%, #c5b2a6ff 0%, #daffd1ff 100%);background-blend-mode: soft-light; */
@@ -44,6 +44,15 @@ body {
     font-style: normal;
     font-size: 3.5em;
     padding: 1.5em;
+}
+
+.timer {
+    color: #2e2e2eda;
+    font-family: "Ubuntu", serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 2.1em;
+    padding-top: 2em;
 }
 
 .bento {

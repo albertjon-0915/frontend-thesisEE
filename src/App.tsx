@@ -4,6 +4,10 @@ import { io } from "socket.io-client";
 
 import { Context } from "./ContextProvider";
 import { Button } from "react-bootstrap";
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
+import Dropdown from 'react-bootstrap/Dropdown';
+import SplitButton from 'react-bootstrap/SplitButton';
 
 import Edit from "./assets/edit.png"
 import Close from "./assets/close.png"
@@ -17,6 +21,7 @@ import Bargraph from "./components/Bargraph";
 import useFetchAllData from "./hooks/useFetchAllData";
 import useFetchDataAvg from "./hooks/useFetchDataClientAvg";
 import useFetchAveragePerDay from "./hooks/useFetchAveragePerDay";
+import useFetchSchedule from "./hooks/useFetchSchedule";
 
 import { flattenData } from "./utils";
 import { RealTimeDataI, FullDataI } from "./interface";
@@ -35,12 +40,19 @@ socket.on('connect', () => {
 
 function App() {
      const { fullData } = useFetchAllData();
-     const { dataAvgById } = useFetchDataAvg()
-     const { dataAvgPerDay } = useFetchAveragePerDay()
+     const { dataAvgById } = useFetchDataAvg();
+     const { dataAvgPerDay } = useFetchAveragePerDay();
+     const { setSchedule, resetSchedule } = useFetchSchedule() as any
 
      const [flattenDataArr, setFlattenDataArr] = useState<FullDataI[]>([])
      const [realTimeData, setRealTimeData] = useState<RealTimeDataI[]>([])
      const { reload, setShowEdit, showEdit } = useContext(Context);
+
+     const [selectedTime, setSelectedTime] = useState("");
+
+     const handleSelect = (eventKey: any) => {
+       setSelectedTime(eventKey);
+     };
 
      socket.on('raspData', (message: any) => {
           // console.log(message)
@@ -144,8 +156,38 @@ function App() {
                          { renderCurrentDataOrEdit() }
                     </div>
                </div>
-          </div>
-
+               <div className="timer">
+                    Scheduled on/off
+               </div>
+               <p className="text-secondary" style={{ fontSize: '0.89em', fontStyle: 'italic' }}>This is where we schedule a timer for turning on/off of the outlet from client 22(kitchen outlet).</p>
+                    <InputGroup className="mb-3">
+                    <Form.Control
+                         placeholder="Enter custom time (mins)"
+                         value={selectedTime}
+                         onChange={(e) => setSelectedTime(e.target.value)}
+                         type="number"
+                         min="1"
+                    />
+                    <SplitButton
+                         variant="outline-secondary"
+                         title={selectedTime ? `Set Timer: ${selectedTime} mins` : "Select Time"}
+                         id="segmented-button-dropdown-1"
+                         onSelect={handleSelect}
+                         onClick={async () => await setSchedule(selectedTime)}
+                         drop="end"
+                    >
+                         <Dropdown.Item eventKey="20">20 mins</Dropdown.Item>
+                         <Dropdown.Item eventKey="40">40 mins</Dropdown.Item>
+                         <Dropdown.Item eventKey="60">1 hr</Dropdown.Item>
+                         <Dropdown.Item eventKey="120">2 hrs</Dropdown.Item>
+                    </SplitButton>
+                    </InputGroup>
+                    <p>Selected Time: {selectedTime} mins</p>
+                    <Button className="mt-5" variant="danger" onClick={async () => await resetSchedule()}>
+                         Reset Timer
+                    </Button>
+               </div>
+          
           </>
      )
 }
