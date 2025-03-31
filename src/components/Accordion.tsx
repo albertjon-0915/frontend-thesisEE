@@ -30,16 +30,16 @@ function AccordionComponent({ArrOfData, styling}: { ArrOfData: FullDataI[] | Ite
                                    <Accordion.Body style={{ fontSize: "13px" }}>
                                         <div className="d-flex justify-content-between text-secondary mb-1" style={{ maxWidth: '10em'}}>
                                              <span>Voltage: </span>
-                                             <span className="fw-medium" style={{ minWidth: '5em', color: '#A96424'}}>{item.voltage.toFixed(4)}</span>
+                                             <span className="fw-medium" style={{ minWidth: '5em', color: '#A96424'}}>{ !!item?.voltage && item.voltage.toFixed(4)}</span>
                                         </div>
                                         <div className="d-flex justify-content-between text-secondary mb-1" style={{ maxWidth: '10em'}}>
                                              <span>Current: </span>
-                                             <span className="fw-medium" style={{ minWidth: '5em', color: '#A96424'}}>{item.current.toFixed(4)}</span>
+                                             <span className="fw-medium" style={{ minWidth: '5em', color: '#A96424'}}>{ !!item?.current && item.current.toFixed(4)}</span>
                                         </div>
                                         <div className="d-flex justify-content-between text-secondary mb-1" style={{ maxWidth: '10em'}}>
                                              <span>kWh: </span> 
                                              <span className="fw-medium" style={{ minWidth: '5em', color: '#A96424'}}>
-                                                  {computeKiloWattsPerHour(item.voltage, item.current, 1).toFixed(4)}
+                                                  { !!item?.voltage && !!item?.current && computeKiloWattsPerHour(item.voltage, item.current, 1).toFixed(4)}
                                              </span>
                                         </div>
                                    </Accordion.Body>

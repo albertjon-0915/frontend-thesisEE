@@ -19,13 +19,13 @@ function MyCard({ props }:{props: RealTimeDataI}) {
         </Card.Subtitle>
         <Card.Text className='fw-light d-flex flex-column ms-3 ps-1' style={{ fontSize: '0.7em'}}>
           <span>
-          Voltage: {props.voltage.toFixed(4)}
+          Voltage: { !!props?.voltage && props.voltage.toFixed(4)}
           </span>
           <span>
-          current: {props.current.toFixed(4)}
+          current: { !!props?.current && props.current.toFixed(4)}
           </span>
           <span>
-          kWh: {computeKiloWattsPerHour(props.voltage, props.current, 1).toFixed(4)}
+          kWh: { !!props?.current && !!props?.current && computeKiloWattsPerHour(props.voltage, props.current, 1).toFixed(4)}
           </span>
         </Card.Text>
       </Card.Body>
