@@ -11,7 +11,6 @@ export interface CardsI {
     current: number
 }
 
-
 export interface ItemI {
      voltage: number;
      current: number;
@@ -41,4 +40,9 @@ export interface DataAvgI {
 
 export interface NameI {
      [key: string]: string
+}
+
+export interface ScheduleI {
+     relay: string,
+     scheduled: boolean,
 }

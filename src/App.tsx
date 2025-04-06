@@ -42,7 +42,7 @@ function App() {
      const { fullData } = useFetchAllData();
      const { dataAvgById } = useFetchDataAvg();
      const { dataAvgPerDay } = useFetchAveragePerDay();
-     const { setSchedule, resetSchedule } = useFetchSchedule() as any
+     const { scheduleData, getSchedule, setSchedule, resetSchedule } = useFetchSchedule() as any
 
      const [flattenDataArr, setFlattenDataArr] = useState<FullDataI[]>([])
      const [realTimeData, setRealTimeData] = useState<RealTimeDataI[]>([])
@@ -53,6 +53,11 @@ function App() {
      const handleSelect = (eventKey: any) => {
        setSelectedTime(eventKey);
      };
+
+     const handleReset = async() => {
+          await resetSchedule()
+          setSelectedTime('')
+     }
 
      socket.on('raspData', (message: any) => {
           // console.log(message)
@@ -68,7 +73,14 @@ function App() {
             const flattenedData = flattenData(fullData as any[]);
             setFlattenDataArr(flattenedData);
           }
+
      }, [flattenDataArr.length, fullData]); 
+     
+     useEffect(() => {
+     if (scheduleData.relay === '' && !scheduleData.scheduled) {
+          getSchedule();
+     }
+     }, [scheduleData.relay, scheduleData.scheduled]);
 
      const renderCurrentDataOrEdit = () => {
           if (showEdit) {
@@ -160,11 +172,13 @@ function App() {
                     Scheduled on/off
                </div>
                <p className="text-secondary" style={{ fontSize: '0.89em', fontStyle: 'italic' }}>This is where we schedule a timer for turning on/off of the outlet from client 22(kitchen outlet).</p>
+               <p className="text-danger" style={{ fontSize: '0.92em'}}>* Note: Toggle the reset schedule button to turn on outlet. This action will also reset the timer set upon the outlet.</p>
                     <InputGroup className="mb-3">
                     <Form.Control
                          placeholder="Enter custom time (mins)"
                          value={selectedTime}
                          onChange={(e) => setSelectedTime(e.target.value)}
+                         disabled={scheduleData.scheduled}
                          type="number"
                          min="1"
                     />
@@ -174,6 +188,7 @@ function App() {
                          id="segmented-button-dropdown-1"
                          onSelect={handleSelect}
                          onClick={async () => await setSchedule(selectedTime)}
+                         disabled={scheduleData.scheduled}
                          drop="end"
                     >
                          <Dropdown.Item eventKey="20">20 mins</Dropdown.Item>
@@ -183,11 +198,11 @@ function App() {
                     </SplitButton>
                     </InputGroup>
                     <p>Selected Time: {selectedTime} mins</p>
-                    <Button className="mt-5" variant="danger" onClick={async () => await resetSchedule()}>
+                    <Button className="mt-5" variant="danger" onClick={handleReset}>
                          Reset Schedule
                     </Button>
                </div>
-          
+                         
           </>
      )
 }
