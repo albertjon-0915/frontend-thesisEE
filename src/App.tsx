@@ -172,7 +172,9 @@ function App() {
                     Scheduled on/off
                </div>
                <p className="text-secondary" style={{ fontSize: '0.89em', fontStyle: 'italic' }}>This is where we schedule a timer for turning on/off of the outlet from client 22(kitchen outlet).</p>
-               <p className="text-danger" style={{ fontSize: '0.92em'}}>* Note: Toggle the reset schedule button to turn on outlet. This action will also reset the timer set upon the outlet.</p>
+               { scheduleData.scheduled && 
+                    <p className="text-danger" style={{ fontSize: '0.92em'}}>* Note: Toggle the reset schedule button to turn on outlet. This action will also reset the timer set upon the outlet.</p>
+               }
                     <InputGroup className="mb-3">
                     <Form.Control
                          placeholder="Enter custom time (mins)"
