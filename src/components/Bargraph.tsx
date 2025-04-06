@@ -1,3 +1,5 @@
+import { computeKiloWattsPerHour } from "../utils/index.tsx";
+
 import {
   Chart as ChartJS,
   BarController,
@@ -34,12 +36,23 @@ function Bargraph({ dataArr }: { dataArr: DataAvgI[] }) {
             label: "voltage",
             data: dataArr?.map((item) => item.voltage),
             backgroundColor: "rgba(75, 192, 192, 0.2)",
+            borderColor: "rgba(75, 192, 192, 0.8)",
+            borderWidth: 1.5,
           },
           {
             label: "current",
             data: dataArr?.map((item) => item.current),
             backgroundColor: "rgba(255, 99, 132, 0.2)",
+            borderColor: "rgba(255, 99, 132, 0.8)",
+            borderWidth: 1.5,
           },
+           {
+            label: "killowatt",
+            data: dataArr?.map((item) => computeKiloWattsPerHour(item.voltage,item.current, 1)),
+            backgroundColor: "rgba(54, 162, 235, 0.2)",
+            borderColor: "rgba(54, 162, 235, 0.8)",
+            borderWidth: 1.5,
+          }
         ],
       }}
       options={{

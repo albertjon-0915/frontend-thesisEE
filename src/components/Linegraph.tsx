@@ -1,4 +1,5 @@
 import { PerDayAvgI } from "../interface/index"
+import { computeKiloWattsPerHour } from "../utils/index"
 
 import {
     Chart as ChartJS,
@@ -47,6 +48,13 @@ function Linegraph({dataArr}: {dataArr: PerDayAvgI[]}) {
                 pointBorderColor: "rgba(153, 102, 255, 0.5)",
                 borderColor: "rgba(153, 102, 255, 0.2)"
               },
+              {
+                label: "killowatt",
+                data: dataArr?.map((item) => computeKiloWattsPerHour(item.avgVoltage,item.avgCurrent, 1)),
+                backgroundColor: "rgba(54, 162, 235, 0.2)",
+                pointBorderColor: "rgba(54, 162, 235, 0.5)",
+                borderColor: "rgba(54, 162, 235, 0.2)"
+              }
             ],
           }}
           options={{

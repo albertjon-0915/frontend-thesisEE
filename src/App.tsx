@@ -111,7 +111,7 @@ function App() {
                <div className="bento">
                     <div className="div1 p-2 border rounded" >
                          <div className="px-1 p-1 text-black fs-5">
-                              Average per day
+                              Montly average per day
                          </div>
                          {
                               dataAvgPerDay && dataAvgPerDay.length > 0 ? 
@@ -133,7 +133,7 @@ function App() {
                     </div>
                     <div className="div3 p-2 rounded border">
                          <div className="px-1 p-1 text-black fs-5">
-                              Bar Graph
+                              Current average per client
                          </div>
                          {
                               dataAvgById && dataAvgById.length > 0 ? 
