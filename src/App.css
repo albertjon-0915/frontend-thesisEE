@@ -73,14 +73,14 @@ body {
 .div4 { min-height: 15em; max-height: 20em; grid-area: 4 / 1 / 6 / 3; }
 
 
-.div2::-webkit-scrollbar{
-    width: 5px;
+.accordion-scrollbar::-webkit-scrollbar{
+    width: 8px;
 }
-.div2::-webkit-scrollbar-track {
-        margin-top:70px;
-        margin-bottom: 30px;
+.accordion-scrollbar::-webkit-scrollbar-track {
+    margin-top:10px;
+    margin-bottom: 300px;
 }
-.div2::-webkit-scrollbar-thumb{
+.accordion-scrollbar::-webkit-scrollbar-thumb{
     background: #a0a0a0;
     border-radius: 10px;
 }

@@ -132,7 +132,7 @@ function App() {
                               <div className="text-center mt-5">Loading ....</div>
                          }
                     </div>
-                    <div className="div2 p-2 border rounded" style={{ overflowX: "hidden", overflowY: "auto"}} >
+                    <div className="div2 p-2 border rounded" style={{ overflowX: "hidden", overflowY: "hidden"}} >
                          <div className="px-1 p-1 text-black fs-3">
                               All data
                          </div>

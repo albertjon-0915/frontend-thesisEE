@@ -27,6 +27,8 @@ import {
   import { Line } from "react-chartjs-2";
 
 function Linegraph({dataArr}: {dataArr: PerDayAvgI[]}) {
+  // const defaultEntry = { avgVoltage: 0.0, avgCurrent: 0.0, date: "Start" };
+  // const fullData = dataArr ? [defaultEntry, ...dataArr] : [defaultEntry];
   return (
     <>
       <div >
