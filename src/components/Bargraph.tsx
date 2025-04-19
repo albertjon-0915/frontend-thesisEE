@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { computeKiloWattsPerHour } from "../utils/index.tsx";
 
 import {
@@ -27,6 +28,40 @@ import useFetchAllias from '../hooks/useFetchAllias.tsx';
 function Bargraph({ dataArr }: { dataArr: DataAvgI[] }) {
   const { nameRef } = useFetchAllias();
 
+    const [chartOptions, setChartOptions] = useState({});
+
+  useEffect(() => {
+    const handleResize = () => {
+      const isSmallScreen = window.innerWidth < 972;
+
+      setChartOptions({
+        responsive: true,
+        maintainAspectRatio: false,
+        layout: {
+          padding: 30,
+        },
+        scales: {
+          x: {
+            ticks: {
+              autoSkip: false,
+              font: {
+                size: isSmallScreen ? 8 : 12,
+              },
+              minRotation: isSmallScreen ? 80 : 60,
+              maxRotation: isSmallScreen ? 80 : 60,
+            },
+          },
+        },
+      });
+    };
+
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <Bar
       data={{
@@ -55,13 +90,7 @@ function Bargraph({ dataArr }: { dataArr: DataAvgI[] }) {
           }
         ],
       }}
-      options={{
-        responsive: true,
-        maintainAspectRatio: false,
-        layout: {
-          padding: 30,
-        },
-      }}
+      options={chartOptions}
     />
   );
 }

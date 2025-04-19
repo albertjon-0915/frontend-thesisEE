@@ -103,6 +103,7 @@ function AccordionComponent({
       itemSize={getItemSize}
       itemData={ArrOfData}
       width="100%"
+      overscanCount={2}
       className="accordion-scrollbar"
     >
       {Row}
