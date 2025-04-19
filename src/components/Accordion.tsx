@@ -98,12 +98,12 @@ function AccordionComponent({
   return (
     <List
       ref={listRef}
-      height={600}
+      height={400}
       itemCount={ArrOfData.length}
       itemSize={getItemSize}
       itemData={ArrOfData}
       width="100%"
-      overscanCount={2}
+      overscanCount={5}
       className="accordion-scrollbar"
     >
       {Row}

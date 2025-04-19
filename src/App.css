@@ -72,6 +72,10 @@ body {
 .div3 { min-height: 15em; max-height: 20em; grid-area: 4 / 3 / 6 / 6; }
 .div4 { min-height: 15em; max-height: 20em; grid-area: 4 / 1 / 6 / 3; }
 
+.accordion-scrollbar{
+    min-height: 580px;
+    padding-bottom: 300px;
+}
 
 .accordion-scrollbar::-webkit-scrollbar{
     width: 8px;
