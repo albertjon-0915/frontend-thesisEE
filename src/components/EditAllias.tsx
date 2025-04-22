@@ -58,7 +58,7 @@ function EditAllias() {
             >
             <option value="" disabled selected style={{ fontSize: '0.8em', color: 'grey', fontStyle: 'italic'}}> select esp32 client </option>
                 {
-                    nameSelections && nameSelections.map((key) => <option key={key} value={key}>{nameRef?.[key] ?? `esp32 Client ${key}`}</option>)
+                    nameSelections && nameSelections.map((key) => <option key={key} value={key}>{nameRef?.[key] ? `${key} - ${nameRef?.[key]}`: `esp32 Client ${key}`}</option>)
                 }
             </Form.Select>
             <Form.Control 
