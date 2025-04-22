@@ -89,7 +89,7 @@ function App() {
                return (realTimeData && realTimeData.length > 0) ? 
                <div className="d-flex flex-wrap">
                     {realTimeData.map((item: RealTimeDataI, index) => (
-                         <MyCard key={`${item}${index}`} props={{
+                         !!item.espClientId && <MyCard key={`${item}${index}`} props={{
                               voltage: item.voltage,
                               current: item.current,
                               espClientId: item.espClientId,

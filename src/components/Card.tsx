@@ -8,7 +8,7 @@ import { computeKiloWattsPerHour } from '../utils';
 
 function MyCard({ props }:{props: RealTimeDataI}) {
   const { nameRef } = useFetchAllias();
-  console.log('props', props.espClientId);
+  // console.log('props', props.espClientId);
   return (
     <Card className="border-0 px-1" style={{ background: 'none' }}>
       <Card.Body>
